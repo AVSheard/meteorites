@@ -10,6 +10,10 @@ export default observer(
 		render() {
 			return meteoriteData.meteorites.length > 0 ? (
 				<Map center={[0, 0]} zoom={2}>
+					<TileLayer
+						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+						attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+					/>
 					{meteoriteData.meteorites.map((meteorite) => {
 						let { reclat, reclong } = meteorite;
 						const reclatNum = Number(reclat);
@@ -18,11 +22,6 @@ export default observer(
 							<Marker key={meteorite.id} position={[reclatNum, reclongNum]} />
 						);
 					})}
-
-					<TileLayer
-						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-						attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-					/>
 				</Map>
 			) : (
 				<>loading...</>

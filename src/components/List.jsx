@@ -20,7 +20,9 @@ export default observer(
 	class List extends Component {
 		componentDidMount() {
 			axios.get("https://data.nasa.gov/resource/gh4g-9sfh.json").then((res) => {
-				meteoriteData.meteorites = res.data;
+				meteoriteData.meteorites = res.data.filter(
+					(meteorite) => meteorite.reclat && meteorite.reclong
+				);
 			});
 		}
 
@@ -30,7 +32,7 @@ export default observer(
 					{meteoriteData.meteorites.length > 0 ? (
 						meteoriteData.meteorites.map((meteorite) => (
 							<li key={meteorite.id}>
-								{meteorite.name}: latitude {meteorite.reclat} longlitude{" "}
+								{meteorite.name}: latitude {meteorite.reclat} longlitude
 								{meteorite.reclong}
 							</li>
 						))
