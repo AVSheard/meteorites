@@ -19,9 +19,9 @@ import { meteoriteData } from "../stores/meteoriteData";
 export default observer(
 	class List extends Component {
 		componentDidMount() {
-			axios
-				.get("https://data.nasa.gov/resource/gh4g-9sfh.json")
-				.then((res) => (meteoriteData.meteorites = res.data));
+			axios.get("https://data.nasa.gov/resource/gh4g-9sfh.json").then((res) => {
+				meteoriteData.meteorites = res.data;
+			});
 		}
 
 		render() {
